@@ -1,0 +1,90 @@
+package com.zadanie7_1;
+class Kwadrat 
+extends Figura 
+{
+private int bok;
+public Kwadrat(int bok) 
+{
+this.bok = bok;
+}
+@Override
+public double liczPole() 
+{
+return bok * bok;
+}
+@Override
+public double LiczObwod() 
+{
+return 4 * bok;
+}
+}
+class Kolo extends Figura 
+{
+private int promien;
+public Kolo(int promien) {
+this.promien = promien;
+}
+@Override
+public double liczPole()
+ {
+return Math.PI * Math.pow(promien, 2);
+}
+@Override
+public double LiczObwod() 
+{
+return 2 * Math.PI * promien;
+}
+}
+abstract class Figura
+ {
+public abstract double liczPole();
+public abstract double LiczObwod();
+}
+public class Main
+ {
+public static void main(String[] args) 
+{
+Figura[] tab = { new Kolo(20), new Kwadrat(20) };
+for(Figura f : tab) 
+{
+System.out.println("Pole: " + f.liczPole());
+System.out.println("Obwód: " + f.LiczObwod());
+}
+}
+}
+abstract class Metoda{
+public void Sumaslow(String s, int ilosc) {
+while(ilosc-- > 0)
+s += "a";
+}
+public abstract void SumaslowABS(String s, int ilosc);
+}
+class Dodanie extends Metoda{
+@Override
+public void SumaslowABS(String s, int ilosc) {
+while(ilosc-- > 0)
+s += "a";
+}
+}
+public class Main 
+{
+public static void main(String[] args)
+ {
+Metoda b1 = new Metoda() 
+{
+@Override
+public void SumaslowABS(String s, int ilosc)
+ {
+}
+};
+Metoda b2 = new Dodanie();
+long start = System.currentTimeMillis();
+b1.Sumaslow("abc", 100000);
+long stop = System.currentTimeMillis();
+System.out.println("Czas metody bezposredniej: " + (stop - start));
+start = System.currentTimeMillis();
+b1.Sumaslow("abc", 100000);
+stop = System.currentTimeMillis();
+System.out.println("Czas metody odziedziczonej: " + (stop - start));
+}
+}
